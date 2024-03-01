@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">まわりみち兼六園</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Achieve</string>
+    <string name="title_notifications">Information</string>
+
+    <string name="checkpoint">チェックポイントの数</string>
+    <string name="hosuu">歩数</string>
+    <string name="visitCount">訪問回数</string>
+    <string name="badge">バッジ</string>
+    <string name="tmp">text</string>
+    <string name="detail">詳細を表示</string>
+    <string name="text">text</string>
+    <string name="back">戻る</string>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="spring_badge">春バッジ</string>
+    <string name="summer_badge">夏バッジ</string>
+    <string name="fall_badge">秋バッジ</string>
+    <string name="winter_badge">冬バッジ</string>
+</resources>

@@ -1,0 +1,29 @@
+<resources>
+    <string name="renntimonnkyushi">蓮池門旧址</string>
+    <string name="Yugao_tei">夕顔亭</string>
+    <string name="hakugadankimnotyouzubashi">伯牙断琴の手水鉢</string>
+    <string name="hunsui">噴水</string>
+    <string name="koumonbashi">黄門橋</string>
+    <string name="midoritaki">翠滝</string>
+    <string name="kaisekitou">海石塔</string>
+    <string name="hisagoike">瓢池</string>
+    <string name="tyouboudai">眺望台</string>
+    <string name="kotojitourou">徽軫灯籠（ことじとうろう）</string>
+    <string name="toraisi">虎石</string>
+    <string name="karasakinomatsu">唐崎松</string>
+    <string name="kasumigaike">霞ヶ池</string>
+    <string name="oyashirazu">親不知</string>
+    <string name="utihasitei">内橋亭</string>
+    <string name="sazaeyama">栄螺山</string>
+    <string name="shiguretei">時雨亭</string>
+    <string name="gannkoubashi">雁行橋</string>
+    <string name="shitihukujinyama">七福神山</string>
+    <string name="bairin">梅林</string>
+    <string name="kenrokuenkikuzakura">兼六園菊桜</string>
+    <string name="neagarinomatsu">根上松</string>
+    <string name="meijikinemnohyou">明治紀念之標</string>
+    <string name="hanamibashi">花見橋</string>
+    <string name="sekireijima">鶺鴒島（せきれいじま）</string>
+    <string name="yamazakiyama">山崎山</string>
+    <string name="tatumiyousui">辰巳用水</string>
+</resources>
