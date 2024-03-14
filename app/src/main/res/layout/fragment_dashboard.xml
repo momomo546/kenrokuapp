@@ -83,19 +83,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="0"
-                    android:text="範囲" />
+                    android:text="範囲"
+                    android:textSize="24dp" />
 
                 <EditText
-                    android:id="@+id/Blue_EditText"
+                    android:id="@+id/area_EditText"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:ems="0"
                     android:imeOptions="actionDone"
                     android:inputType="number"
-                    tools:text="0" />
+                    tools:text="15" />
 
                 <SeekBar
-                    android:id="@+id/Blue_SeekBar"
+                    android:id="@+id/area_SeekBar"
                     android:layout_width="180dp"
                     android:layout_height="match_parent"
                     android:max="20"
