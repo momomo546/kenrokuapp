@@ -71,12 +71,6 @@ class MainActivity : AppCompatActivity() , LocationListener , SensorEventListene
         sharedPreferences = getSharedPreferences("padometor", Context.MODE_PRIVATE)
         editor = sharedPreferences.edit()
 
-        //seasoncheck
-        val seasonFlagCheck = SeasonFlagCheck(this)
-        seasonFlagCheck.checkSeasonFlag()
-        seasonFlagCheck.check()
-        //seasoncheck
-
         // step呼び出し
         steps = sharedPreferences.getInt("step", 0)
 
@@ -160,7 +154,14 @@ class MainActivity : AppCompatActivity() , LocationListener , SensorEventListene
     override fun onLocationChanged(location: Location) {
         val locationCheck = LocationCheck()
         isLocation = locationCheck.isWithinRange(location)
-        if(isLocation) visitCount.add()
+        if(isLocation) {
+            visitCount.add()
+            //seasoncheck
+            val seasonFlagCheck = SeasonFlagCheck(this)
+            seasonFlagCheck.checkSeasonFlag()
+            seasonFlagCheck.check()
+            //seasoncheck
+        }
         for(i in HomeFragment.markerPosition.indices) {
             val targetLocation = Location("target")
             targetLocation.latitude = HomeFragment.markerPosition[i].latitude
