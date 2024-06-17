@@ -1,15 +1,13 @@
 package com.example.bottom_navigation_view
 
 import android.content.Context
-import android.media.MediaPlayer
 import android.util.Log
-import android.widget.Toast
 import com.example.bottom_navigation_view.ui.dashboard.BadgeFlag
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.util.Calendar
 
-class SeasonFlagCheck(private val context: Context) {
+class SeasonFlagCheck(private val context: Context, private val callback: (String) -> Unit) {
     // 変数保存
     val sharedPreferences = context.getSharedPreferences("seasonFlag", Context.MODE_PRIVATE)
     val editor = sharedPreferences.edit()
@@ -39,25 +37,25 @@ class SeasonFlagCheck(private val context: Context) {
         if(3<=month&&month<=5) {
             if(seasonFlag[0]==false){
                 seasonFlag[0] = true
-                popUp("春バッジを獲得しました。")
+                callback("春バッジを獲得しました。")
             }
         }
         else if(6<=month&&month<=8) {
             if(seasonFlag[1]==false){
                 seasonFlag[1] = true
-                popUp("夏バッジを獲得しました。")
+                callback("夏バッジを獲得しました。")
             }
         }
         else if(9<=month&&month<=11) {
             if(seasonFlag[2]==false){
                 seasonFlag[2] = true
-                popUp("秋バッジを獲得しました。")
+                callback("秋バッジを獲得しました。")
             }
         }
         else {
             if(seasonFlag[3]==false){
                 seasonFlag[3] = true
-                popUp("冬バッジを獲得しました。")
+                callback("冬バッジを獲得しました。")
             }
         }
 
@@ -65,12 +63,6 @@ class SeasonFlagCheck(private val context: Context) {
         val json = gson.toJson(seasonFlag)
         editor.putString("seasonFlag", json)
         editor.apply()
-    }
-
-    fun popUp(message: String){
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-        val mediaPlayer = MediaPlayer.create(context, R.raw.rappa)
-        mediaPlayer.start()
     }
 
     fun check() {

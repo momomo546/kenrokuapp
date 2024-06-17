@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.SeekBar
-import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -47,7 +45,7 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        area_EditText = view.findViewById(R.id.area_EditText)
+        /*area_EditText = view.findViewById(R.id.area_EditText)
         area_SeekBar = view.findViewById(R.id.area_SeekBar)
 
         area_EditText.setText("15")
@@ -92,7 +90,7 @@ class DashboardFragment : Fragment() {
                     checkPointFlagCheck.AREA = area_SeekBar.progress
                 }
             }
-        )
+        )*/
     }
 
     override fun onResume() {
@@ -106,7 +104,7 @@ class DashboardFragment : Fragment() {
         checkPointView.text = "$trueCount/$listSize"
 
         val mainActivity = activity as MainActivity
-        val variableValue = mainActivity.steps
+        val variableValue = BadgeFlag.steps
         walkCountView.text = "$variableValue"
 
         val visitCount = mainActivity.visitCount

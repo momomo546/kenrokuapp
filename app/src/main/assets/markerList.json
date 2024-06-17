@@ -1,0 +1,166 @@
+{
+  "markerList": [
+    {
+      "name": "renntimonnkyushi",
+      "icon": "HUE_RED",
+      "lat": 36.563055,
+      "lng": 136.661066
+    },
+    {
+      "name": "Yugao_tei",
+      "icon": "HUE_YELLOW",
+      "lat": 36.5630,
+      "lng": 136.6612
+    },
+    {
+      "name": "hakugadankimnotyouzubashi",
+      "icon": "HUE_RED",
+      "lat": 36.5628,
+      "lng": 136.6612
+    },
+    {
+      "name": "hunsui",
+      "icon": "HUE_RED",
+      "lat": 36.5633,
+      "lng": 136.6618
+    },
+    {
+      "name": "koumonbashi",
+      "icon": "HUE_RED",
+      "lat": 36.562967,
+      "lng": 136.661734
+    },
+    {
+      "name": "midoritaki",
+      "icon": "HUE_RED",
+      "lat": 36.562773,
+      "lng": 136.661128
+    },
+    {
+      "name": "kaisekitou",
+      "icon": "HUE_RED",
+      "lat": 36.562699,
+      "lng": 136.661026
+    },
+    {
+      "name": "hisagoike",
+      "icon": "HUE_AZURE",
+      "lat": 36.562209,
+      "lng": 136.660697
+    },
+    {
+      "name": "tyouboudai",
+      "icon": "HUE_RED",
+      "lat": 36.5633,
+      "lng": 136.6630
+    },
+    {
+      "name": "kotojitourou",
+      "icon": "HUE_RED",
+      "lat": 36.563281,
+      "lng": 136.662769
+    },
+    {
+      "name": "toraisi",
+      "icon": "HUE_RED",
+      "lat": 36.563284,
+      "lng": 136.662582
+    },
+    {
+      "name": "karasakinomatsu",
+      "icon": "HUE_AZURE",
+      "lat": 36.562911,
+      "lng": 136.663171
+    },
+    {
+      "name": "kasumigaike",
+      "icon": "HUE_RED",
+      "lat": 36.562402,
+      "lng": 136.662860
+    },
+    {
+      "name": "oyashirazu",
+      "icon": "HUE_RED",
+      "lat": 36.5627,
+      "lng": 136.6622
+    },
+    {
+      "name": "utihasitei",
+      "icon": "HUE_YELLOW",
+      "lat": 36.5625,
+      "lng": 136.6623
+    },
+    {
+      "name": "sazaeyama",
+      "icon": "HUE_RED",
+      "lat": 36.5626,
+      "lng": 136.6621
+    },
+    {
+      "name": "shiguretei",
+      "icon": "HUE_YELLOW",
+      "lat": 36.562029,
+      "lng": 136.661318
+    },
+    {
+      "name": "gannkoubashi",
+      "icon": "HUE_RED",
+      "lat": 36.562697,
+      "lng": 136.663407
+    },
+    {
+      "name": "shitihukujinyama",
+      "icon": "HUE_RED",
+      "lat": 36.562420,
+      "lng": 136.663458
+    },
+    {
+      "name": "bairin",
+      "icon": "HUE_ROSE",
+      "lat": 36.561432,
+      "lng": 136.662469
+    },
+    {
+      "name": "kenrokuenkikuzakura",
+      "icon": "HUE_AZURE",
+      "lat": 36.5622,
+      "lng": 136.6634
+    },
+    {
+      "name": "neagarinomatsu",
+      "icon": "HUE_RED",
+      "lat": 36.561933,
+      "lng": 136.663497
+    },
+    {
+      "name": "meijikinemnohyou",
+      "icon": "HUE_RED",
+      "lat": 36.562084,
+      "lng": 136.663730
+    },
+    {
+      "name": "hanamibashi",
+      "icon": "HUE_ROSE",
+      "lat": 36.5617,
+      "lng": 136.6635
+    },
+    {
+      "name": "sekireijima",
+      "icon": "HUE_RED",
+      "lat": 36.561625,
+      "lng": 136.663824
+    },
+    {
+      "name": "yamazakiyama",
+      "icon": "HUE_RED",
+      "lat": 36.5613,
+      "lng": 136.6646
+    },
+    {
+      "name": "tatumiyousui",
+      "icon": "HUE_RED",
+      "lat": 36.5612,
+      "lng": 136.6644
+    }
+  ]
+}
