@@ -50,16 +50,21 @@ class StepCounter(context: Context, private  val activity: MainActivity) : Senso
     }
 
     fun registerStepCounterListener(){
-        mSensorManager.registerListener(
-            this,
-            mStepConterSensor,
-            SensorManager.SENSOR_DELAY_NORMAL
-        )
-        mSensorManager.registerListener(
-            this,
-            mStepDetectorSensor,
-            SensorManager.SENSOR_DELAY_NORMAL
-        )
+        if (mSensorManager == null) {
+            println("Step sensor not available!")
+        }
+        else {
+            mSensorManager.registerListener(
+                this,
+                mStepConterSensor,
+                SensorManager.SENSOR_DELAY_NORMAL
+            )
+            mSensorManager.registerListener(
+                this,
+                mStepDetectorSensor,
+                SensorManager.SENSOR_DELAY_NORMAL
+            )
+        }
     }
 
     fun unregisterStepCounterListener(){
