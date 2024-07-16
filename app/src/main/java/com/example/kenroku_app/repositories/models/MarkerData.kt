@@ -1,6 +1,6 @@
-package com.example.kenroku_app.fragments
+package com.example.kenroku_app.repositories.models
 
-import com.example.kenroku_app.fragments.home.KenrokuenMarker
+import com.example.kenroku_app.services.google_map.KenrokuenMarker
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import java.util.Vector

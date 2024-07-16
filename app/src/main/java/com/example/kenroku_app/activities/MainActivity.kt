@@ -1,4 +1,4 @@
-package com.example.kenroku_app
+package com.example.kenroku_app.activities
 
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -7,10 +7,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.kenroku_app.CheckPointFlagCheck
+import com.example.kenroku_app.R
+import com.example.kenroku_app.SeasonFlagCheck
 import com.example.kenroku_app.databinding.ActivityMainBinding
-import com.example.kenroku_app.fragments.GPSManager
-import com.example.kenroku_app.fragments.StepCounter
-import com.example.kenroku_app.fragments.VisitCount
+import com.example.kenroku_app.services.GPSManager
+import com.example.kenroku_app.services.StepCounter
+import com.example.kenroku_app.utils.VisitCount
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 
@@ -18,16 +21,16 @@ class MainActivity : AppCompatActivity(){
     private lateinit var binding: ActivityMainBinding
     var isLocation = false
     lateinit var visitCount: VisitCount
-    lateinit var checkPointFlagCheck: com.example.kenroku_app.CheckPointFlagCheck
+    lateinit var checkPointFlagCheck: CheckPointFlagCheck
 
-    lateinit var gpsManager: com.example.kenroku_app.fragments.GPSManager
+    lateinit var gpsManager: GPSManager
     lateinit var stepCounter: StepCounter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         visitCount = VisitCount(this)
-        checkPointFlagCheck = com.example.kenroku_app.CheckPointFlagCheck(this)
+        checkPointFlagCheck = CheckPointFlagCheck(this)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -49,7 +52,7 @@ class MainActivity : AppCompatActivity(){
         super.onStart()
 
         gpsManager =
-            com.example.kenroku_app.fragments.GPSManager(this, this) { -> checkPointCheck() }
+            GPSManager(this, this) { -> checkPointCheck() }
         stepCounter = StepCounter(this,this)
     }
 
@@ -64,7 +67,7 @@ class MainActivity : AppCompatActivity(){
     }
 
     private fun checkPointCheck() {
-        val seasonFlagCheck = com.example.kenroku_app.SeasonFlagCheck(this) { message ->
+        val seasonFlagCheck = SeasonFlagCheck(this) { message ->
             // 位置情報の更新があったときの処理
             popUp(message)
         }

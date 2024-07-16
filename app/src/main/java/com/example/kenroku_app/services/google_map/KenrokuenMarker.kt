@@ -1,10 +1,10 @@
-package com.example.kenroku_app.fragments.home
+package com.example.kenroku_app.services.google_map
 
 import android.content.Context
 import android.media.MediaPlayer
 import android.widget.Toast
 import com.example.kenroku_app.R
-import com.example.kenroku_app.fragments.MarkerData
+import com.example.kenroku_app.repositories.models.MarkerData
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng

@@ -1,8 +1,8 @@
 package com.example.kenroku_app
 
 import android.content.Context
-import com.example.kenroku_app.fragments.MarkerData
-import com.example.kenroku_app.fragments.home.KenrokuenMarker
+import com.example.kenroku_app.repositories.models.MarkerData
+import com.example.kenroku_app.services.google_map.KenrokuenMarker
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

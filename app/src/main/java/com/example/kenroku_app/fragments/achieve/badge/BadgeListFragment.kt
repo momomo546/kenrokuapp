@@ -1,4 +1,4 @@
-package com.example.kenroku_app.fragments.achieve
+package com.example.kenroku_app.fragments.achieve.badge
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kenroku_app.R
+import com.example.kenroku_app.fragments.achieve.badge.BadgeAdapter
+import com.example.kenroku_app.fragments.achieve.badge.MyData
 
 class BadgeListFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

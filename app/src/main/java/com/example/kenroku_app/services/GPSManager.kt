@@ -1,4 +1,4 @@
-package com.example.kenroku_app.fragments
+package com.example.kenroku_app.services
 
 import android.Manifest
 import android.content.Context
@@ -11,13 +11,13 @@ import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.kenroku_app.CheckPointFlagCheck
-import com.example.kenroku_app.LocationCheck
-import com.example.kenroku_app.MainActivity
+import com.example.kenroku_app.activities.MainActivity
+import com.example.kenroku_app.repositories.models.MarkerData
+import com.example.kenroku_app.utils.VisitCount
 
-class GPSManager(private val context: Context, private  val activity: com.example.kenroku_app.MainActivity, private val callback: () -> Unit) {
+class GPSManager(private val context: Context, private  val activity: MainActivity, private val callback: () -> Unit) {
     var isLocation = false
-    val visitCount = com.example.kenroku_app.fragments.VisitCount(context)
+    val visitCount = VisitCount(context)
     val checkPointFlagCheck = com.example.kenroku_app.CheckPointFlagCheck(context)
     private val minTimeGpsCheck : Long = 1000
     val minDistanceGpsCheck = 0f
@@ -42,14 +42,14 @@ class GPSManager(private val context: Context, private  val activity: com.exampl
                 visitCount.add()
                 callback()
             }
-            for(i in com.example.kenroku_app.fragments.MarkerData.Companion.markerPosition.indices) {
+            for(i in MarkerData.markerPosition.indices) {
                 val targetLocation = Location("target")
-                targetLocation.latitude = com.example.kenroku_app.fragments.MarkerData.Companion.markerPosition[i].latitude
-                targetLocation.longitude = com.example.kenroku_app.fragments.MarkerData.Companion.markerPosition[i].longitude
+                targetLocation.latitude = MarkerData.markerPosition[i].latitude
+                targetLocation.longitude = MarkerData.markerPosition[i].longitude
                 val distance = location.distanceTo(targetLocation)
 
                 checkPointFlagCheck.checkCheckPointFlag(i,distance,
-                    com.example.kenroku_app.fragments.MarkerData.Companion.kenrokuenMarker
+                    MarkerData.kenrokuenMarker
                 )
 
                 //Log.d("debug", distance.toString())

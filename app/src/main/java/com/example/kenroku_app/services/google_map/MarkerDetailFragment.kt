@@ -1,4 +1,4 @@
-package com.example.kenroku_app.fragments.home
+package com.example.kenroku_app.services.google_map
 
 import android.os.Bundle
 import android.view.LayoutInflater

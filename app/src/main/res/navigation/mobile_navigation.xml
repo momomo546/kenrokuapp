@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/markerDetailFragment"
-        android:name="com.example.kenroku_app.fragments.home.MarkerDetailFragment"
+        android:name="com.example.kenroku_app.services.google_map.MarkerDetailFragment"
         android:label="MarkerDetailFragment"
         tools:layout="@layout/fragment_marker_detail"/>
 </navigation>

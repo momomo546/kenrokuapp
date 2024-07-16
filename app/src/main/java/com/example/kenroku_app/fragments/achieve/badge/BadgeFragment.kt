@@ -1,4 +1,4 @@
-package com.example.kenroku_app.fragments.achieve
+package com.example.kenroku_app.fragments.achieve.badge
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

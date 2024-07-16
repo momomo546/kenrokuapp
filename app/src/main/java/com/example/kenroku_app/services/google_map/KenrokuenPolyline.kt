@@ -1,4 +1,4 @@
-package com.example.kenroku_app.fragments.home
+package com.example.kenroku_app.services.google_map
 
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.JointType

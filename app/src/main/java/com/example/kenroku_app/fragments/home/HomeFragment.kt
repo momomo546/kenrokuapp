@@ -12,9 +12,12 @@ import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import com.example.kenroku_app.MainActivity
 import com.example.kenroku_app.R
-import com.example.kenroku_app.fragments.MarkerData
+import com.example.kenroku_app.activities.MainActivity
+import com.example.kenroku_app.repositories.models.MarkerData
+import com.example.kenroku_app.services.google_map.KenrokuenMarker
+import com.example.kenroku_app.services.google_map.KenrokuenPolyline
+import com.example.kenroku_app.services.google_map.MarkerDetailFragment
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -28,7 +31,7 @@ import com.google.android.gms.maps.model.Marker
 
 class HomeFragment : Fragment(), OnMapReadyCallback{
     private lateinit var mMap: GoogleMap
-    private val TAG: String = com.example.kenroku_app.MainActivity::class.java.getSimpleName()
+    private val TAG: String = MainActivity::class.java.getSimpleName()
     private var isStart = false
     lateinit var kenrokuenMarker: KenrokuenMarker
 

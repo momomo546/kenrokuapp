@@ -2,7 +2,7 @@ package com.example.kenroku_app
 
 import android.content.Context
 import android.util.Log
-import com.example.kenroku_app.fragments.MarkerData
+import com.example.kenroku_app.repositories.models.MarkerData
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.util.Calendar

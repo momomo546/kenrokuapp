@@ -1,4 +1,4 @@
-package com.example.kenroku_app.fragments
+package com.example.kenroku_app.utils
 
 import android.content.Context
 import java.util.Calendar

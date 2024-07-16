@@ -1,8 +1,9 @@
-package com.example.kenroku_app.fragments.achieve
+package com.example.kenroku_app.services.achievement
 
-import com.example.kenroku_app.fragments.MarkerData
+import com.example.kenroku_app.fragments.achieve.badge.MyData
+import com.example.kenroku_app.repositories.models.MarkerData
 
-class AchievementSeason(private val myData: List<MyData>,private val position:Int) : Achievement(myData) {
+class AchievementSeason(private val myData: List<MyData>, private val position:Int) : Achievement(myData) {
     val item = myData[position]
     override fun checkAchievementConditions(){
         if (MarkerData.seasonFlag[position]) {
@@ -12,7 +13,7 @@ class AchievementSeason(private val myData: List<MyData>,private val position:In
     }
 }
 
-class AchievementCheckPoint(private val myData: List<MyData>,private val position:Int) : Achievement(myData) {
+class AchievementCheckPoint(private val myData: List<MyData>, private val position:Int) : Achievement(myData) {
     val item = myData[position]
     override fun checkAchievementConditions(){
         if (MarkerData.checkPointFlag[position]) {

@@ -9,9 +9,10 @@ import android.widget.SeekBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import com.example.kenroku_app.MainActivity
 import com.example.kenroku_app.R
-import com.example.kenroku_app.fragments.MarkerData
+import com.example.kenroku_app.activities.MainActivity
+import com.example.kenroku_app.fragments.achieve.badge.BadgeListFragment
+import com.example.kenroku_app.repositories.models.MarkerData
 
 
 class AchieveFragment : Fragment() {
@@ -104,7 +105,7 @@ class AchieveFragment : Fragment() {
         val trueCount = MarkerData.checkPointFlag.count { it == true }
         checkPointView.text = "$trueCount/$listSize"
 
-        val mainActivity = activity as com.example.kenroku_app.MainActivity
+        val mainActivity = activity as MainActivity
         val variableValue = MarkerData.steps
         walkCountView.text = "$variableValue"
 

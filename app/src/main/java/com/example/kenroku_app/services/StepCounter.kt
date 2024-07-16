@@ -1,4 +1,4 @@
-package com.example.kenroku_app.fragments
+package com.example.kenroku_app.services
 
 import android.Manifest
 import android.app.Activity
@@ -11,9 +11,10 @@ import android.hardware.SensorManager
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.kenroku_app.MainActivity
+import com.example.kenroku_app.activities.MainActivity
+import com.example.kenroku_app.repositories.models.MarkerData
 
-class StepCounter(context: Context, private  val activity: com.example.kenroku_app.MainActivity) : SensorEventListener {
+class StepCounter(context: Context, private  val activity: MainActivity) : SensorEventListener {
 
     private val PERMISSION_REQUEST_ACTIVITY_RECOGNITION = 1001
     private var mSensorManager: SensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager

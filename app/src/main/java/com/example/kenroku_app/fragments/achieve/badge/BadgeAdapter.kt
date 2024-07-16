@@ -1,4 +1,4 @@
-package com.example.kenroku_app.fragments.achieve
+package com.example.kenroku_app.fragments.achieve.badge
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kenroku_app.R
-import com.example.kenroku_app.fragments.MarkerData
+import com.example.kenroku_app.repositories.models.MarkerData
 
 data class MyData(val imageResId: Int, val text: String)
 
