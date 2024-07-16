@@ -1,4 +1,4 @@
-package com.example.kenroku_app.services
+package com.example.kenroku_app.services.step_counter
 
 import android.Manifest
 import android.app.Activity

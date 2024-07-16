@@ -1,4 +1,4 @@
-package com.example.kenroku_app
+package com.example.kenroku_app.services.gps.actions
 
 import android.location.Location
 

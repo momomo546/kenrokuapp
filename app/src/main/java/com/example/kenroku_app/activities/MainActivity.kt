@@ -7,13 +7,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.kenroku_app.CheckPointFlagCheck
+import com.example.kenroku_app.services.gps.actions.CheckPointFlagCheck
 import com.example.kenroku_app.R
-import com.example.kenroku_app.SeasonFlagCheck
+import com.example.kenroku_app.services.gps.actions.SeasonFlagCheck
 import com.example.kenroku_app.databinding.ActivityMainBinding
-import com.example.kenroku_app.services.GPSManager
-import com.example.kenroku_app.services.StepCounter
-import com.example.kenroku_app.utils.VisitCount
+import com.example.kenroku_app.services.gps.GPSManager
+import com.example.kenroku_app.services.step_counter.StepCounter
+import com.example.kenroku_app.services.gps.actions.VisitCount
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 

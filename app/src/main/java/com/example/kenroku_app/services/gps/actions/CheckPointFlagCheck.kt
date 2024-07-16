@@ -1,6 +1,7 @@
-package com.example.kenroku_app
+package com.example.kenroku_app.services.gps.actions
 
 import android.content.Context
+import com.example.kenroku_app.R
 import com.example.kenroku_app.repositories.models.MarkerData
 import com.example.kenroku_app.services.google_map.KenrokuenMarker
 import com.google.android.gms.maps.model.BitmapDescriptorFactory

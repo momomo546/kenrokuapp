@@ -1,4 +1,4 @@
-package com.example.kenroku_app.utils
+package com.example.kenroku_app.services.gps.actions
 
 import android.content.Context
 import java.util.Calendar

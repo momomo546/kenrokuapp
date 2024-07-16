@@ -1,4 +1,4 @@
-package com.example.kenroku_app.services
+package com.example.kenroku_app.services.gps
 
 import android.Manifest
 import android.content.Context
@@ -13,12 +13,14 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.kenroku_app.activities.MainActivity
 import com.example.kenroku_app.repositories.models.MarkerData
-import com.example.kenroku_app.utils.VisitCount
+import com.example.kenroku_app.services.gps.actions.CheckPointFlagCheck
+import com.example.kenroku_app.services.gps.actions.LocationCheck
+import com.example.kenroku_app.services.gps.actions.VisitCount
 
 class GPSManager(private val context: Context, private  val activity: MainActivity, private val callback: () -> Unit) {
     var isLocation = false
     val visitCount = VisitCount(context)
-    val checkPointFlagCheck = com.example.kenroku_app.CheckPointFlagCheck(context)
+    val checkPointFlagCheck = CheckPointFlagCheck(context)
     private val minTimeGpsCheck : Long = 1000
     val minDistanceGpsCheck = 0f
 
@@ -35,7 +37,7 @@ class GPSManager(private val context: Context, private  val activity: MainActivi
     private val locationListener = object : LocationListener {
         override fun onLocationChanged(location: Location) {
             // 位置情報が変更されたときの処理
-            val locationCheck = com.example.kenroku_app.LocationCheck()
+            val locationCheck = LocationCheck()
             isLocation = locationCheck.isWithinRange(location)
             activity.isLocation = isLocation
             if(isLocation) {
