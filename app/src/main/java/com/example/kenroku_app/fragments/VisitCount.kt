@@ -1,4 +1,4 @@
-package com.example.bottom_navigation_view.ui
+package com.example.kenroku_app.fragments
 
 import android.content.Context
 import java.util.Calendar

@@ -1,4 +1,4 @@
-package com.example.bottom_navigation_view.ui.notifications
+package com.example.kenroku_app.fragments.notifications
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.bottom_navigation_view.databinding.FragmentNotificationsBinding
+import com.example.kenroku_app.databinding.FragmentNotificationsBinding
 
 class NotificationsFragment : Fragment() {
 

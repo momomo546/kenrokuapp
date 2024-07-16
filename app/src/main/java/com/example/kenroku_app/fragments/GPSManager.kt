@@ -1,4 +1,4 @@
-package com.example.bottom_navigation_view.ui
+package com.example.kenroku_app.fragments
 
 import android.Manifest
 import android.content.Context
@@ -8,39 +8,49 @@ import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.bottom_navigation_view.CheckPointFlagCheck
-import com.example.bottom_navigation_view.LocationCheck
-import com.example.bottom_navigation_view.MainActivity
-import com.example.bottom_navigation_view.ui.dashboard.BadgeFlag
+import com.example.kenroku_app.CheckPointFlagCheck
+import com.example.kenroku_app.LocationCheck
+import com.example.kenroku_app.MainActivity
 
-class GPSManager(private val context: Context, private  val activity: MainActivity, private val callback: () -> Unit) {
+class GPSManager(private val context: Context, private  val activity: com.example.kenroku_app.MainActivity, private val callback: () -> Unit) {
     var isLocation = false
-    val visitCount = VisitCount(context)
-    val checkPointFlagCheck = CheckPointFlagCheck(context)
+    val visitCount = com.example.kenroku_app.fragments.VisitCount(context)
+    val checkPointFlagCheck = com.example.kenroku_app.CheckPointFlagCheck(context)
+    private val minTimeGpsCheck : Long = 1000
+    val minDistanceGpsCheck = 0f
 
     private val locationManager: LocationManager by lazy {
         context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
     }
-
+    private val requestPermissionLauncher = activity.registerForActivityResult(ActivityResultContracts.RequestPermission())
+    { isGranted: Boolean ->
+        if (isGranted) {
+            // 使用が許可された
+            startGpsUpdates()
+        }
+    }
     private val locationListener = object : LocationListener {
         override fun onLocationChanged(location: Location) {
             // 位置情報が変更されたときの処理
-            val locationCheck = LocationCheck()
+            val locationCheck = com.example.kenroku_app.LocationCheck()
             isLocation = locationCheck.isWithinRange(location)
             activity.isLocation = isLocation
             if(isLocation) {
                 visitCount.add()
                 callback()
             }
-            for(i in BadgeFlag.markerPosition.indices) {
+            for(i in com.example.kenroku_app.fragments.MarkerData.Companion.markerPosition.indices) {
                 val targetLocation = Location("target")
-                targetLocation.latitude = BadgeFlag.markerPosition[i].latitude
-                targetLocation.longitude = BadgeFlag.markerPosition[i].longitude
+                targetLocation.latitude = com.example.kenroku_app.fragments.MarkerData.Companion.markerPosition[i].latitude
+                targetLocation.longitude = com.example.kenroku_app.fragments.MarkerData.Companion.markerPosition[i].longitude
                 val distance = location.distanceTo(targetLocation)
 
-                checkPointFlagCheck.checkCheckPointFlag(i,distance, BadgeFlag.kenrokuenMarker)
+                checkPointFlagCheck.checkCheckPointFlag(i,distance,
+                    com.example.kenroku_app.fragments.MarkerData.Companion.kenrokuenMarker
+                )
 
                 //Log.d("debug", distance.toString())
             }
@@ -56,6 +66,19 @@ class GPSManager(private val context: Context, private  val activity: MainActivi
 
         override fun onProviderDisabled(provider: String) {
             // プロバイダが無効になったときの処理
+        }
+    }
+    init {
+        gpsPermission()
+    }
+
+    private fun gpsPermission() {
+        if (ContextCompat.checkSelfPermission(context,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+        } else {
+            println("GPS available")
+            startGpsUpdates()
         }
     }
 
@@ -82,8 +105,8 @@ class GPSManager(private val context: Context, private  val activity: MainActivi
         }
         locationManager.requestLocationUpdates(
             LocationManager.GPS_PROVIDER,
-            3000,
-            0f,
+            minTimeGpsCheck,
+            minDistanceGpsCheck,
             locationListener)
     }
 

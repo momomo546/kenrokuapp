@@ -1,4 +1,4 @@
-package com.example.bottom_navigation_view.ui.dashboard
+package com.example.kenroku_app.fragments.achieve
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bottom_navigation_view.R
+import com.example.kenroku_app.R
+import com.example.kenroku_app.fragments.MarkerData
 
 data class MyData(val imageResId: Int, val text: String)
 
@@ -18,7 +19,7 @@ class BadgeAdapter (private val data: List<MyData>) : RecyclerView.Adapter<Badge
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
-        if (!BadgeFlag.seasonFlag[position]) {
+        if (!MarkerData.seasonFlag[position]) {
             holder.imageView.setImageResource(R.drawable.badge_default)
         } else {
             holder.imageView.setImageResource(item.imageResId)

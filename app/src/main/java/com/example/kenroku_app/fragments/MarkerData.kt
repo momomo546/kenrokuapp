@@ -1,10 +1,11 @@
-package com.example.bottom_navigation_view.ui.dashboard
+package com.example.kenroku_app.fragments
 
+import com.example.kenroku_app.fragments.home.KenrokuenMarker
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import java.util.Vector
 
-class BadgeFlag {
+class MarkerData {
     companion object {
         var checkPointFlag = MutableList(27) { false }
         var seasonFlag = MutableList(4){ false }

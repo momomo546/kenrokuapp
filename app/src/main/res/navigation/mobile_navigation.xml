@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.bottom_navigation_view.ui.home.HomeFragment"
+        android:name="com.example.kenroku_app.fragments.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -16,20 +16,20 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.bottom_navigation_view.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_achieve"
+        android:name="com.example.kenroku_app.fragments.achieve.AchieveFragment"
+        android:label="@string/title_achieve"
+        tools:layout="@layout/fragment_achieve" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.bottom_navigation_view.ui.notifications.NotificationsFragment"
+        android:name="com.example.kenroku_app.fragments.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
         android:id="@+id/markerDetailFragment"
-        android:name="com.example.bottom_navigation_view.ui.home.MarkerDetailFragment"
+        android:name="com.example.kenroku_app.fragments.home.MarkerDetailFragment"
         android:label="MarkerDetailFragment"
         tools:layout="@layout/fragment_marker_detail"/>
 </navigation>

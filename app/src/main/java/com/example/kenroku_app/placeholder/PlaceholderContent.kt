@@ -1,4 +1,4 @@
-package com.example.bottom_navigation_view.placeholder
+package com.example.kenroku_app.placeholder
 
 import java.util.ArrayList
 import java.util.HashMap

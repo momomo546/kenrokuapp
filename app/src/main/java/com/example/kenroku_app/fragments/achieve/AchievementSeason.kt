@@ -1,12 +1,11 @@
-package com.example.bottom_navigation_view.ui
+package com.example.kenroku_app.fragments.achieve
 
-import com.example.bottom_navigation_view.ui.dashboard.BadgeFlag
-import com.example.bottom_navigation_view.ui.dashboard.MyData
+import com.example.kenroku_app.fragments.MarkerData
 
 class AchievementSeason(private val myData: List<MyData>,private val position:Int) : Achievement(myData) {
     val item = myData[position]
     override fun checkAchievementConditions(){
-        if (BadgeFlag.seasonFlag[position]) {
+        if (MarkerData.seasonFlag[position]) {
             imageresource = item.imageResId
             text = item.text
         }
@@ -16,7 +15,7 @@ class AchievementSeason(private val myData: List<MyData>,private val position:In
 class AchievementCheckPoint(private val myData: List<MyData>,private val position:Int) : Achievement(myData) {
     val item = myData[position]
     override fun checkAchievementConditions(){
-        if (BadgeFlag.checkPointFlag[position]) {
+        if (MarkerData.checkPointFlag[position]) {
             imageresource = item.imageResId
             text = item.text
         }

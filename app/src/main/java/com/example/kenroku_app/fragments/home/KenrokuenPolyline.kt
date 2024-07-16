@@ -1,4 +1,4 @@
-package com.example.bottom_navigation_view.ui
+package com.example.kenroku_app.fragments.home
 
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.JointType

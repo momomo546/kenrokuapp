@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.bottom_navigation_view"
+    namespace = "com.example.kenroku_app"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.bottom_navigation_view"
+        applicationId = "com.example.kenroku_app"
         minSdk = 24
         targetSdk = 33
         versionCode = 1
@@ -38,10 +38,16 @@ android {
         viewBinding = true
         buildConfig = true
     }
+    sourceSets {
+        getByName("main") {
+            java {
+                srcDirs("src\\main\\java", "src\\main\\java\\2")
+            }
+        }
+    }
 }
 
 dependencies {
-
     implementation("androidx.core:core-ktx:1.10.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")

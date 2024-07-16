@@ -1,7 +1,6 @@
-package com.example.bottom_navigation_view.ui
+package com.example.kenroku_app.fragments.achieve
 
-import com.example.bottom_navigation_view.R
-import com.example.bottom_navigation_view.ui.dashboard.MyData
+import com.example.kenroku_app.R
 
 open class Achievement(myData: List<MyData>) {
     var imageresource = R.drawable.badge_default

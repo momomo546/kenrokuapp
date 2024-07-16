@@ -1,9 +1,10 @@
-package com.example.bottom_navigation_view.ui.dashboard
+package com.example.kenroku_app.fragments.home
 
 import android.content.Context
 import android.media.MediaPlayer
 import android.widget.Toast
-import com.example.bottom_navigation_view.R
+import com.example.kenroku_app.R
+import com.example.kenroku_app.fragments.MarkerData
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
@@ -41,12 +42,12 @@ class KenrokuenMarker(val context: Context,val mMap: GoogleMap) {
                     .title(context.getString(resourceText))
             )
         }
-        BadgeFlag.markerList = markerList
+        MarkerData.markerList = markerList
     }
 
     fun addMarker(){
         for ((index, value) in markerList.withIndex()) {
-            if (BadgeFlag.checkPointFlag[index]) value.icon(
+            if (MarkerData.checkPointFlag[index]) value.icon(
                 BitmapDescriptorFactory.fromResource(
                     R.drawable.check_mark
                 )
@@ -61,8 +62,8 @@ class KenrokuenMarker(val context: Context,val mMap: GoogleMap) {
         addMarkerList[index]?.remove()
     }
     fun resetMarker(index:Int){
-        addMarkerList[index] = mMap.addMarker(BadgeFlag.markerList[index])
-        markerList[index] = BadgeFlag.markerList[index]
+        addMarkerList[index] = mMap.addMarker(MarkerData.markerList[index])
+        markerList[index] = MarkerData.markerList[index]
         val mediaPlayer = MediaPlayer.create(context, R.raw.rappa)
         mediaPlayer.start()
         val toast = Toast.makeText(context, markerList[index].title+"を通過しました！", Toast.LENGTH_LONG)

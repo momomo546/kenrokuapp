@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">まわりみち兼六園</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Achieve</string>
+    <string name="title_achieve">Achieve</string>
     <string name="title_notifications">Information</string>
 
     <string name="checkpoint">チェックポイントの数</string>

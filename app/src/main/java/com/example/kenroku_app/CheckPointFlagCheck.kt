@@ -1,8 +1,8 @@
-package com.example.bottom_navigation_view
+package com.example.kenroku_app
 
 import android.content.Context
-import com.example.bottom_navigation_view.ui.dashboard.BadgeFlag
-import com.example.bottom_navigation_view.ui.dashboard.KenrokuenMarker
+import com.example.kenroku_app.fragments.MarkerData
+import com.example.kenroku_app.fragments.home.KenrokuenMarker
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -25,18 +25,18 @@ class CheckPointFlagCheck(context: Context) {
             val type = object : TypeToken<MutableList<Boolean>>() {}.type
             checkPointFlag = gson.fromJson(jsonFlag, type) ?: mutableListOf()
         }
-        BadgeFlag.checkPointFlag = checkPointFlag
+        MarkerData.checkPointFlag = checkPointFlag
     }
 
     fun checkCheckPointFlag(index: Int,distance: Float,kenrokuenMarker: KenrokuenMarker?) {
         if(distance<AREA) {
-            if (kenrokuenMarker != null && !BadgeFlag.checkPointFlag[index]) {
+            if (kenrokuenMarker != null && !MarkerData.checkPointFlag[index]) {
                 kenrokuenMarker.removeMarker(index)
                 kenrokuenMarker.markerList[index].icon(BitmapDescriptorFactory.fromResource(R.drawable.check_mark))
                 kenrokuenMarker.resetMarker(index)
             }
             checkPointFlag[index] = true
-            BadgeFlag.checkPointFlag = checkPointFlag
+            MarkerData.checkPointFlag = checkPointFlag
 
             val json = gson.toJson(checkPointFlag)
             editor.putString("checkPointFlag", json)

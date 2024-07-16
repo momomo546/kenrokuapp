@@ -1,4 +1,4 @@
-package com.example.bottom_navigation_view
+package com.example.kenroku_app
 
 import android.location.Location
 

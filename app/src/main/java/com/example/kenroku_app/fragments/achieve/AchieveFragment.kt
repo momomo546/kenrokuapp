@@ -1,4 +1,4 @@
-package com.example.bottom_navigation_view.ui.dashboard
+package com.example.kenroku_app.fragments.achieve
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,11 +9,12 @@ import android.widget.SeekBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import com.example.bottom_navigation_view.MainActivity
-import com.example.bottom_navigation_view.R
+import com.example.kenroku_app.MainActivity
+import com.example.kenroku_app.R
+import com.example.kenroku_app.fragments.MarkerData
 
 
-class DashboardFragment : Fragment() {
+class AchieveFragment : Fragment() {
     private lateinit var view : View
     private lateinit var checkPointView: TextView
     private lateinit var walkCountView: TextView
@@ -28,7 +29,7 @@ class DashboardFragment : Fragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        view = inflater.inflate(R.layout.fragment_dashboard, container, false)
+        view = inflater.inflate(R.layout.fragment_achieve, container, false)
         checkPointView = view.findViewById(R.id.number_of_checkpoints)
         walkCountView = view.findViewById(R.id.number_of_steps)
         visitCountView = view.findViewById(R.id.number_of_visits)
@@ -99,12 +100,12 @@ class DashboardFragment : Fragment() {
     }
 
     fun viewUpdate(){
-        val listSize = BadgeFlag.checkPointFlag.size
-        val trueCount = BadgeFlag.checkPointFlag.count { it == true }
+        val listSize = MarkerData.checkPointFlag.size
+        val trueCount = MarkerData.checkPointFlag.count { it == true }
         checkPointView.text = "$trueCount/$listSize"
 
-        val mainActivity = activity as MainActivity
-        val variableValue = BadgeFlag.steps
+        val mainActivity = activity as com.example.kenroku_app.MainActivity
+        val variableValue = MarkerData.steps
         walkCountView.text = "$variableValue"
 
         val visitCount = mainActivity.visitCount

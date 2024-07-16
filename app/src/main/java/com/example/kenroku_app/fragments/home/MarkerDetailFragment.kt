@@ -1,4 +1,4 @@
-package com.example.bottom_navigation_view.ui.home
+package com.example.kenroku_app.fragments.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.bottom_navigation_view.R
+import com.example.kenroku_app.R
 
 class MarkerDetailFragment : Fragment() {
 

@@ -1,13 +1,13 @@
-package com.example.bottom_navigation_view.ui.home
+package com.example.kenroku_app.fragments.achieve
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel : ViewModel() {
+class AchieveViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+        value = "This is achieve Fragment"
     }
     val text: LiveData<String> = _text
 }

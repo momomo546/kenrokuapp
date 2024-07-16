@@ -1,4 +1,4 @@
-package com.example.bottom_navigation_view.ui.notifications
+package com.example.kenroku_app.fragments.notifications
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

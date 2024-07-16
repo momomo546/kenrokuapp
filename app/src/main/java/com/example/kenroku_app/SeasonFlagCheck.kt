@@ -1,8 +1,8 @@
-package com.example.bottom_navigation_view
+package com.example.kenroku_app
 
 import android.content.Context
 import android.util.Log
-import com.example.bottom_navigation_view.ui.dashboard.BadgeFlag
+import com.example.kenroku_app.fragments.MarkerData
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.util.Calendar
@@ -24,7 +24,7 @@ class SeasonFlagCheck(private val context: Context, private val callback: (Strin
             val type = object : TypeToken<MutableList<Boolean>>() {}.type
             seasonFlag = gson.fromJson(jsonFlag, type) ?: mutableListOf()
         }
-        BadgeFlag.seasonFlag = seasonFlag
+        MarkerData.seasonFlag = seasonFlag
     }
 
     fun getCurrentMonth(): Int {
@@ -59,7 +59,7 @@ class SeasonFlagCheck(private val context: Context, private val callback: (Strin
             }
         }
 
-        BadgeFlag.seasonFlag = seasonFlag
+        MarkerData.seasonFlag = seasonFlag
         val json = gson.toJson(seasonFlag)
         editor.putString("seasonFlag", json)
         editor.apply()

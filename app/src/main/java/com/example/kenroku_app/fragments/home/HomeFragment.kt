@@ -1,4 +1,4 @@
-package com.example.bottom_navigation_view.ui.home
+package com.example.kenroku_app.fragments.home
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -12,11 +12,9 @@ import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import com.example.bottom_navigation_view.MainActivity
-import com.example.bottom_navigation_view.R
-import com.example.bottom_navigation_view.ui.KenrokuenPolyline
-import com.example.bottom_navigation_view.ui.dashboard.BadgeFlag
-import com.example.bottom_navigation_view.ui.dashboard.KenrokuenMarker
+import com.example.kenroku_app.MainActivity
+import com.example.kenroku_app.R
+import com.example.kenroku_app.fragments.MarkerData
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -30,7 +28,7 @@ import com.google.android.gms.maps.model.Marker
 
 class HomeFragment : Fragment(), OnMapReadyCallback{
     private lateinit var mMap: GoogleMap
-    private val TAG: String = MainActivity::class.java.getSimpleName()
+    private val TAG: String = com.example.kenroku_app.MainActivity::class.java.getSimpleName()
     private var isStart = false
     lateinit var kenrokuenMarker: KenrokuenMarker
 
@@ -195,7 +193,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback{
     fun addKenrokuenMarker() {
         kenrokuenMarker = KenrokuenMarker(requireContext(),mMap)
         kenrokuenMarker.addMarker()
-        BadgeFlag.kenrokuenMarker = kenrokuenMarker
+        MarkerData.kenrokuenMarker = kenrokuenMarker
     }
 
     /*
