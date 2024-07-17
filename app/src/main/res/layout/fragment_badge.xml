@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".fragments.achieve.badge.BadgeFragment">
+    tools:context=".view.fragments.achieve.badge.BadgeFragment">
 
     <LinearLayout
         android:id="@+id/fragment_badge"
