@@ -5,30 +5,39 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kenroku_app.R
+import com.example.kenroku_app.databinding.FragmentBadgeListBinding
+import com.example.kenroku_app.viewmodel.Badge.BadgeListViewModel
 
 class BadgeListFragment : Fragment() {
+
+    private var _binding: FragmentBadgeListBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_badge_list, container, false)
-        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
 
-        val badgeList = listOf(
-            MyData(R.drawable.img_marker_04, getString(R.string.spring_badge)),
-            MyData(R.drawable.img_marker_06, getString(R.string.summer_badge)),
-            MyData(R.drawable.img_marker_10, getString(R.string.fall_badge)),
-            MyData(R.drawable.img_marker_12, getString(R.string.winter_badge)),
-        )
+        val badgeListViewModel =
+            ViewModelProvider(this)[BadgeListViewModel::class.java]
 
-        val linearLayoutManager = LinearLayoutManager(view.context)
-        val adapter = BadgeAdapter(badgeList)
+        _binding = FragmentBadgeListBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+        val recyclerView: RecyclerView = binding.recyclerView
+        val linearLayoutManager = LinearLayoutManager(recyclerView.context)
         recyclerView.layoutManager = linearLayoutManager
-        recyclerView.adapter = adapter
 
-        recyclerView.addItemDecoration(DividerItemDecoration(view.context, linearLayoutManager.orientation))
+        badgeListViewModel.badgeList.observe(viewLifecycleOwner) {badgeList ->
+            val adapter = BadgeAdapter(badgeList)
+            recyclerView.adapter = adapter
+            recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, linearLayoutManager.orientation))
+        }
+        return root
+    }
 
-        return view
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

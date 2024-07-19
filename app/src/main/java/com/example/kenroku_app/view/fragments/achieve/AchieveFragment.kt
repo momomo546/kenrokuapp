@@ -7,48 +7,63 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModelProvider
 import com.example.kenroku_app.R
-import com.example.kenroku_app.view.activities.MainActivity
+import com.example.kenroku_app.databinding.FragmentAchieveBinding
 import com.example.kenroku_app.view.fragments.achieve.badge.BadgeListFragment
-import com.example.kenroku_app.model.repositories.data.MarkerData
-
+import com.example.kenroku_app.viewmodel.AchieveViewModel
 
 class AchieveFragment : Fragment() {
-    private lateinit var view : View
-    private lateinit var checkPointView: TextView
-    private lateinit var walkCountView: TextView
-    private lateinit var visitCountView: TextView
+
+    private var _binding: FragmentAchieveBinding? = null
+
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        super.onCreateView(inflater, container, savedInstanceState)
+        val achieveViewModel =
+            ViewModelProvider(this)[AchieveViewModel::class.java]
 
-        view = inflater.inflate(R.layout.fragment_achieve, container, false)
-        checkPointView = view.findViewById(R.id.number_of_checkpoints)
-        walkCountView = view.findViewById(R.id.number_of_steps)
-        visitCountView = view.findViewById(R.id.number_of_visits)
+        _binding = FragmentAchieveBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+        val checkPointView: TextView = binding.numberOfSteps
+        val walkCountView: TextView = binding.numberOfCheckpoints
+        val visitCountView: TextView = binding.numberOfVisits
+        achieveViewModel.checkPointText.observe(viewLifecycleOwner) {
+            checkPointView.text = it
+        }
+        achieveViewModel.walkCountText.observe(viewLifecycleOwner) {
+            walkCountView.text = it
+        }
+        achieveViewModel.visitCountText.observe(viewLifecycleOwner){
+            visitCountView.text = it
+        }
 
         val childFragment = BadgeListFragment()
         val transaction: FragmentTransaction = childFragmentManager.beginTransaction()
         transaction.add(R.id.fragment_container, childFragment)
         transaction.commit()
 
-        viewUpdate()
-
-        return view
+        return root
     }
 
-    override fun onResume() {
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    /*override fun onResume() {
         super.onResume()
         viewUpdate()
     }
 
     fun viewUpdate(){
         val listSize = MarkerData.checkPointFlag.size
-        val trueCount = MarkerData.checkPointFlag.count { it == true }
+        val trueCount = MarkerData.checkPointFlag.count { it }
         checkPointView.text = "$trueCount/$listSize"
 
         val mainActivity = activity as MainActivity
@@ -57,5 +72,5 @@ class AchieveFragment : Fragment() {
 
         val visitCount = mainActivity.visitCount
         visitCountView.text = "${visitCount.getVisitCount()}"
-    }
+    }*/
 }

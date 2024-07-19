@@ -13,7 +13,7 @@
         android:padding="4dp">
 
         <ImageView
-            android:id="@+id/img_badge"
+            android:id="@+id/image_badge"
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:layout_gravity="center_vertical"

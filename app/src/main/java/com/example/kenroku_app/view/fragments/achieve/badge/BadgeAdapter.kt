@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kenroku_app.R
 import com.example.kenroku_app.model.repositories.data.MarkerData
 
-data class MyData(val imageResId: Int, val text: String)
+data class BadgeData(val imageResId: Int, val textId: Int)
 
-class BadgeAdapter (private val data: List<MyData>) : RecyclerView.Adapter<BadgeAdapter.ViewHolder>() {
+class BadgeAdapter (private val data: List<BadgeData>) : RecyclerView.Adapter<BadgeAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_badge, parent, false)
         return ViewHolder(view)
@@ -24,7 +24,7 @@ class BadgeAdapter (private val data: List<MyData>) : RecyclerView.Adapter<Badge
         } else {
             holder.imageView.setImageResource(item.imageResId)
         }
-        holder.textView.text = item.text
+        holder.textView.setText(item.textId)
     }
 
     override fun getItemCount(): Int {
@@ -32,7 +32,7 @@ class BadgeAdapter (private val data: List<MyData>) : RecyclerView.Adapter<Badge
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageView: ImageView = itemView.findViewById(R.id.img_badge)
+        val imageView: ImageView = itemView.findViewById(R.id.image_badge)
         val textView: TextView = itemView.findViewById(R.id.text_badge)
     }
 }
