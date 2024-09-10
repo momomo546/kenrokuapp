@@ -4,6 +4,7 @@ import android.content.Context
 import android.media.MediaPlayer
 import android.widget.Toast
 import com.example.kenroku_app.R
+import com.example.kenroku_app.model.repositories.data.AchieveData
 import com.example.kenroku_app.model.repositories.data.MarkerData
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
@@ -47,7 +48,7 @@ class KenrokuenMarker(val context: Context,val mMap: GoogleMap) {
 
     fun addMarker(){
         for ((index, value) in markerList.withIndex()) {
-            if (MarkerData.checkPointFlag[index]) value.icon(
+            if (AchieveData.checkPointFlag[index]) value.icon(
                 BitmapDescriptorFactory.fromResource(
                     R.drawable.check_mark
                 )

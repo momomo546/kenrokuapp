@@ -2,7 +2,7 @@ package com.example.kenroku_app.model.services.gps.actions
 
 import android.content.Context
 import android.util.Log
-import com.example.kenroku_app.model.repositories.data.MarkerData
+import com.example.kenroku_app.model.repositories.data.AchieveData
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.util.Calendar
@@ -23,7 +23,7 @@ class SeasonFlagCheck(private val context: Context, private val callback: (Strin
             val type = object : TypeToken<MutableList<Boolean>>() {}.type
             gson.fromJson(jsonFlag, type) ?: mutableListOf()
         }
-        MarkerData.seasonFlag = seasonFlag
+        AchieveData.seasonFlag = seasonFlag
     }
 
     private fun getCurrentMonth(): Int {
@@ -58,7 +58,7 @@ class SeasonFlagCheck(private val context: Context, private val callback: (Strin
             }
         }
 
-        MarkerData.seasonFlag = seasonFlag
+        AchieveData.seasonFlag = seasonFlag
         val json = gson.toJson(seasonFlag)
         editor.putString("seasonFlag", json)
         editor.apply()

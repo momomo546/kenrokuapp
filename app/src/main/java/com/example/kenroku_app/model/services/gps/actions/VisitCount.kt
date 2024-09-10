@@ -1,6 +1,7 @@
 package com.example.kenroku_app.model.services.gps.actions
 
 import android.content.Context
+import com.example.kenroku_app.model.repositories.data.AchieveData
 import java.util.Calendar
 
 
@@ -14,11 +15,17 @@ class VisitCount(private val context: Context){
     private var month = sharedPreferences.getInt("month", 1)
     private var date = sharedPreferences.getInt("date", 1)
 
+    init{
+        AchieveData.visitCount = count
+    }
 
     fun add(){
-        if (isVisitCount()) count++
-        editor.putInt("count", count)
-        editor.apply()
+        if (isVisitCount()) {
+            count++
+            editor.putInt("count", count)
+            editor.apply()
+            AchieveData.visitCount = count
+        }
     }
 
     fun getVisitCount(): Int {

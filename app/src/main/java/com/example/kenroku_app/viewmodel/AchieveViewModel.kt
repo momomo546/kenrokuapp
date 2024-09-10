@@ -3,7 +3,7 @@ package com.example.kenroku_app.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.kenroku_app.model.repositories.data.MarkerData
+import com.example.kenroku_app.model.repositories.data.AchieveData
 
 class AchieveViewModel : ViewModel() {
 
@@ -22,15 +22,14 @@ class AchieveViewModel : ViewModel() {
     val visitCountText: LiveData<String> = _visitCountText
 
     fun viewUpdate(){
-        val listSize = MarkerData.checkPointFlag.size
-        val trueCount = MarkerData.checkPointFlag.count { it }
+        val listSize = AchieveData.checkPointFlag.size
+        val trueCount = AchieveData.checkPointFlag.count { it }
         _checkPointText.value = "$trueCount/$listSize"
 
-        val variableValue = MarkerData.steps
+        val variableValue = AchieveData.steps
         _walkCountText.value = "$variableValue"
 
-        /*val mainActivity = activity as MainActivity
-        val visitCount = mainActivity.visitCount
-        _visitCountText.value = "${visitCount.getVisitCount()}"*/
+        val visitCount = AchieveData.visitCount
+        _visitCountText.value = "$visitCount"
     }
 }

@@ -2,7 +2,7 @@ package com.example.kenroku_app.model.services.gps.actions
 
 import android.content.Context
 import com.example.kenroku_app.R
-import com.example.kenroku_app.model.repositories.data.MarkerData
+import com.example.kenroku_app.model.repositories.data.AchieveData
 import com.example.kenroku_app.model.services.google_map.KenrokuenMarker
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.gson.Gson
@@ -25,18 +25,18 @@ class CheckPointFlagCheck(context: Context) {
             val type = object : TypeToken<MutableList<Boolean>>() {}.type
             gson.fromJson(jsonFlag, type) ?: mutableListOf()
         }
-        MarkerData.checkPointFlag = checkPointFlag
+        AchieveData.checkPointFlag = checkPointFlag
     }
 
     fun checkCheckPointFlag(index: Int,distance: Float,kenrokuenMarker: KenrokuenMarker?) {
         if(distance<AREA) {
-            if (kenrokuenMarker != null && !MarkerData.checkPointFlag[index]) {
+            if (kenrokuenMarker != null && !AchieveData.checkPointFlag[index]) {
                 kenrokuenMarker.removeMarker(index)
                 kenrokuenMarker.markerList[index].icon(BitmapDescriptorFactory.fromResource(R.drawable.check_mark))
                 kenrokuenMarker.resetMarker(index)
             }
             checkPointFlag[index] = true
-            MarkerData.checkPointFlag = checkPointFlag
+            AchieveData.checkPointFlag = checkPointFlag
 
             val json = gson.toJson(checkPointFlag)
             editor.putString("checkPointFlag", json)

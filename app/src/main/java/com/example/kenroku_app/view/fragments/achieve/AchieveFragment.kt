@@ -16,7 +16,7 @@ import com.example.kenroku_app.viewmodel.AchieveViewModel
 class AchieveFragment : Fragment() {
 
     private var _binding: FragmentAchieveBinding? = null
-
+    private lateinit var achieveViewModel: AchieveViewModel
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -24,14 +24,13 @@ class AchieveFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val achieveViewModel =
-            ViewModelProvider(this)[AchieveViewModel::class.java]
+        achieveViewModel = ViewModelProvider(this)[AchieveViewModel::class.java]
 
         _binding = FragmentAchieveBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val checkPointView: TextView = binding.numberOfSteps
-        val walkCountView: TextView = binding.numberOfCheckpoints
+        val walkCountView: TextView = binding.numberOfSteps
+        val checkPointView: TextView = binding.numberOfCheckpoints
         val visitCountView: TextView = binding.numberOfVisits
         achieveViewModel.checkPointText.observe(viewLifecycleOwner) {
             checkPointView.text = it
@@ -56,12 +55,12 @@ class AchieveFragment : Fragment() {
         _binding = null
     }
 
-    /*override fun onResume() {
+    override fun onResume() {
         super.onResume()
-        viewUpdate()
+        achieveViewModel.viewUpdate()
     }
 
-    fun viewUpdate(){
+    /*fun viewUpdate(){
         val listSize = MarkerData.checkPointFlag.size
         val trueCount = MarkerData.checkPointFlag.count { it }
         checkPointView.text = "$trueCount/$listSize"
