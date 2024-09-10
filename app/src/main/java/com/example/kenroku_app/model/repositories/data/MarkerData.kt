@@ -7,8 +7,6 @@ import java.util.Vector
 
 class MarkerData {
     companion object {
-        var checkPointFlag = MutableList(27) { false }
-        var seasonFlag = MutableList(4){ false }
         val markerPosition: List<LatLng> = listOf(
             LatLng(36.563055, 136.661066),
             LatLng(36.5630, 136.6612),
@@ -41,7 +39,6 @@ class MarkerData {
         )
         var markerList: Vector<MarkerOptions> = Vector()
         var kenrokuenMarker: KenrokuenMarker? = null
-        var steps = 0
     }
 
 }

@@ -1,22 +1,20 @@
 package com.example.kenroku_app.model.services.step_counter
 
-import android.Manifest
-import android.app.Activity
 import android.content.Context
-import android.content.pm.PackageManager
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.util.Log
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import com.example.kenroku_app.model.repositories.data.MarkerData
-import com.example.kenroku_app.view.activities.MainActivity
+import com.example.kenroku_app.model.repositories.data.AchieveData
+import com.example.kenroku_app.viewmodel.activity.MainViewModel
 
-class StepCounter(context: Context, private  val activity: MainActivity) : SensorEventListener {
+class StepCounter(
+    private val context: Context,
+    private val viewModel: MainViewModel,
+    private val onStepDetected: (Int) -> Unit
+) : SensorEventListener {
 
-    private val PERMISSION_REQUEST_ACTIVITY_RECOGNITION = 1001
     private var mSensorManager: SensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
     private var mStepDetectorSensor: Sensor? = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR)
     private var mStepConterSensor: Sensor? = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
@@ -32,21 +30,10 @@ class StepCounter(context: Context, private  val activity: MainActivity) : Senso
         if (mStepConterSensor == null) {
             Log.e("StepCounter", "Step Counter Sensor is not available!")
         }
-        stepCounterPermission(activity)
-    }
-
-    private fun stepCounterPermission(activity: Activity) {
-        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.ACTIVITY_RECOGNITION)
-            != PackageManager.PERMISSION_GRANTED) {
-            // パーミッションが許可されていないのでリクエストする
-            ActivityCompat.requestPermissions(activity,
-                arrayOf(Manifest.permission.ACTIVITY_RECOGNITION),
-                PERMISSION_REQUEST_ACTIVITY_RECOGNITION)
-        }
     }
 
     override fun onSensorChanged(event: SensorEvent) {
-        if(!activity.isLocation) return
+        if(!viewModel.isLocation) return
         val sensor = event.sensor
         val values = event.values
         //TYPE_STEP_COUNTER
@@ -55,29 +42,26 @@ class StepCounter(context: Context, private  val activity: MainActivity) : Senso
             Log.d("type_step_counter", values[0].toString())
         }
         steps++
-        MarkerData.steps = steps
+        AchieveData.steps = steps
         editor.putInt("step", steps)
         editor.apply()
+        onStepDetected(steps)
     }
 
     fun registerStepCounterListener() {
-        if (mSensorManager == null) {
-            println("Sensor Manager is not available!")
-        } else {
-            mStepConterSensor?.let {
-                mSensorManager.registerListener(
-                    this,
-                    it,
-                    SensorManager.SENSOR_DELAY_NORMAL
-                )
-            }
-            mStepDetectorSensor?.let {
-                mSensorManager.registerListener(
-                    this,
-                    it,
-                    SensorManager.SENSOR_DELAY_NORMAL
-                )
-            }
+        mStepConterSensor?.let {
+            mSensorManager.registerListener(
+                this,
+                it,
+                SensorManager.SENSOR_DELAY_NORMAL
+            )
+        }
+        mStepDetectorSensor?.let {
+            mSensorManager.registerListener(
+                this,
+                it,
+                SensorManager.SENSOR_DELAY_NORMAL
+            )
         }
     }
 

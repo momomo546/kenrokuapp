@@ -8,16 +8,16 @@ import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.kenroku_app.view.activities.MainActivity
 import com.example.kenroku_app.model.repositories.data.MarkerData
 import com.example.kenroku_app.model.services.gps.actions.CheckPointFlagCheck
 import com.example.kenroku_app.model.services.gps.actions.LocationCheck
 import com.example.kenroku_app.model.services.gps.actions.VisitCount
 
-class GPSManager(private val context: Context, private  val activity: MainActivity, private val callback: () -> Unit) {
+class GPSManager(
+    private val context: Context,
+    private val onLocation: (Boolean) -> Unit
+) {
     var isLocation = false
     val visitCount = VisitCount(context)
     val checkPointFlagCheck = CheckPointFlagCheck(context)
@@ -27,22 +27,15 @@ class GPSManager(private val context: Context, private  val activity: MainActivi
     private val locationManager: LocationManager by lazy {
         context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
     }
-    private val requestPermissionLauncher = activity.registerForActivityResult(ActivityResultContracts.RequestPermission())
-    { isGranted: Boolean ->
-        if (isGranted) {
-            // 使用が許可された
-            startGpsUpdates()
-        }
-    }
+
     private val locationListener = object : LocationListener {
         override fun onLocationChanged(location: Location) {
             // 位置情報が変更されたときの処理
             val locationCheck = LocationCheck()
             isLocation = locationCheck.isWithinRange(location)
-            activity.isLocation = isLocation
             if(isLocation) {
                 visitCount.add()
-                callback()
+                onLocation(isLocation)
             }
             for(i in MarkerData.markerPosition.indices) {
                 val targetLocation = Location("target")
@@ -50,11 +43,7 @@ class GPSManager(private val context: Context, private  val activity: MainActivi
                 targetLocation.longitude = MarkerData.markerPosition[i].longitude
                 val distance = location.distanceTo(targetLocation)
 
-                checkPointFlagCheck.checkCheckPointFlag(i,distance,
-                    MarkerData.kenrokuenMarker
-                )
-
-                //Log.d("debug", distance.toString())
+                checkPointFlagCheck.checkCheckPointFlag(i,distance, MarkerData.kenrokuenMarker)
             }
         }
 
@@ -70,39 +59,18 @@ class GPSManager(private val context: Context, private  val activity: MainActivi
             // プロバイダが無効になったときの処理
         }
     }
-    init {
-        gpsPermission()
-    }
 
-    private fun gpsPermission() {
-        if (ContextCompat.checkSelfPermission(context,
-                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
-        } else {
-            println("GPS available")
-            startGpsUpdates()
-        }
-    }
-
-    fun startGpsUpdates() {
+    fun registerGpsUpdates() {
         // GPSの更新を開始する
         Log.d("debug", "locationStart()")
 
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             Log.d("debug", "location manager Enabled")
-        } else {
-            // to prompt setting up GPS
-            /*val settingsIntent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-            startActivity(settingsIntent)
-            Log.d("debug", "not gpsEnable, startActivity")*/
         }
 
         if (ContextCompat.checkSelfPermission(context,
-                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1000)
-
-            Log.d("debug", "checkSelfPermission false")
+                Manifest.permission.ACCESS_FINE_LOCATION
+        ) != PackageManager.PERMISSION_GRANTED) {
             return
         }
         locationManager.requestLocationUpdates(
@@ -112,7 +80,7 @@ class GPSManager(private val context: Context, private  val activity: MainActivi
             locationListener)
     }
 
-    fun stopGpsUpdates() {
+    fun unregisterGpsUpdates() {
         // GPSの更新を停止する
         locationManager.removeUpdates(locationListener)
     }
