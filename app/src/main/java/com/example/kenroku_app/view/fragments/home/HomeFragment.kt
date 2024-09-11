@@ -11,25 +11,23 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.example.kenroku_app.R
-import com.example.kenroku_app.view.activities.MainActivity
 import com.example.kenroku_app.model.repositories.data.MarkerData
 import com.example.kenroku_app.model.services.google_map.KenrokuenMarker
-import com.example.kenroku_app.model.services.google_map.KenrokuenPolyline
 import com.example.kenroku_app.model.services.google_map.MarkerDetailFragment
-import com.google.android.gms.maps.CameraUpdateFactory
+import com.example.kenroku_app.view.activities.MainActivity
+import com.example.kenroku_app.viewmodel.HomeViewModel
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.GroundOverlayOptions
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.Marker
 
 class HomeFragment : Fragment(), OnMapReadyCallback{
+    private val homeViewModel: HomeViewModel by viewModels()
+
     private lateinit var mMap: GoogleMap
     private val TAG: String = MainActivity::class.java.simpleName
     private var isStart = false
@@ -57,56 +55,34 @@ class HomeFragment : Fragment(), OnMapReadyCallback{
     override fun onMapReady(googleMap: GoogleMap) {
         if (isStart) return
         isStart = true
-        mMap = googleMap
-        mMap.setMinZoomPreference(16.5f)
-        mMap.setMaxZoomPreference(20.0f)
-        Log.d("debug", "onMapReady")
-
-        val kenrokuenPolyline = KenrokuenPolyline(mMap)
-        kenrokuenPolyline.setPolyline()
-
-        // 移動の制限範囲
-        val adelaideBounds = LatLngBounds(
-            LatLng(36.5600, 136.6594),  // SW bounds
-            LatLng(36.5648, 136.6653) // NE bounds
-        )
-
-        // 移動の制限
-        mMap.setLatLngBoundsForCameraTarget(adelaideBounds)
-
-        // オーバーレイとマーカーの追加
-        val kenrokuenLatLng = LatLng(36.5625, 136.66227)
-        val kenrokuenMap = GroundOverlayOptions()
-            .image(BitmapDescriptorFactory.fromResource(R.drawable.map_kenrokuen))
-            .position(kenrokuenLatLng, 528f, 528f)
-        val kenrokuenMapWhite = GroundOverlayOptions()
-            .image(BitmapDescriptorFactory.fromResource(R.drawable.white))
-            .position(kenrokuenLatLng, 2000f, 2000f)
-        mMap.addGroundOverlay(kenrokuenMapWhite)
-        mMap.addGroundOverlay(kenrokuenMap)
+        mMap=googleMap
+        homeViewModel.initializeMap(googleMap)
 
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
+            ) == PackageManager.PERMISSION_GRANTED
         ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            return
+            mMap.isMyLocationEnabled = true
         }
-        mMap.isMyLocationEnabled = true
 
-        addKenrokuenMarker()
+        kenrokuenMarker = KenrokuenMarker(requireContext(), mMap)
+        kenrokuenMarker.addMarker()
+        MarkerData.kenrokuenMarker = kenrokuenMarker
 
-        // カメラの初期位置
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(kenrokuenLatLng))
-        mMap.moveCamera(CameraUpdateFactory.zoomTo(16.5f))
+        val success = mMap.setMapStyle(
+            activity?.let {
+                MapStyleOptions.loadRawResourceStyle(
+                    it, R.raw.style_json
+                )
+            }
+        )
+        if (!success) {
+            Log.e(TAG, "Style parsing failed.")
+        }
 
         // 情報ウィンドウの設定
-        mMap.setInfoWindowAdapter(object : GoogleMap.InfoWindowAdapter {
+        googleMap.setInfoWindowAdapter(object : GoogleMap.InfoWindowAdapter {
             override fun getInfoWindow(marker: Marker): View? {
                 return null
             }
@@ -154,22 +130,5 @@ class HomeFragment : Fragment(), OnMapReadyCallback{
                 return customInfoWindow
             }
         })
-
-        val success = mMap.setMapStyle(
-            activity?.let {
-                MapStyleOptions.loadRawResourceStyle(
-                    it, R.raw.style_json
-                )
-            }
-        )
-        if (!success) {
-            Log.e(TAG, "Style parsing failed.")
-        }
-    }
-    private fun addKenrokuenMarker() {
-        kenrokuenMarker = KenrokuenMarker(requireContext(),mMap)
-        kenrokuenMarker.addMarker()
-        MarkerData.kenrokuenMarker = kenrokuenMarker
     }
 }
-
