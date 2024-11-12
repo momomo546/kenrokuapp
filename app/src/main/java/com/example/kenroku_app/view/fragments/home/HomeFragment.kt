@@ -15,7 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.example.kenroku_app.R
 import com.example.kenroku_app.model.repositories.data.MarkerData
-import com.example.kenroku_app.model.services.google_map.KenrokuenMarker
+import com.example.kenroku_app.model.services.google_map.GoogleMapMarker
 import com.example.kenroku_app.model.services.google_map.MarkerDetailFragment
 import com.example.kenroku_app.view.activities.MainActivity
 import com.example.kenroku_app.viewmodel.HomeViewModel
@@ -31,7 +31,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback{
     private lateinit var mMap: GoogleMap
     private val TAG: String = MainActivity::class.java.simpleName
     private var isStart = false
-    private lateinit var kenrokuenMarker: KenrokuenMarker
+    private lateinit var googleMapMarker: GoogleMapMarker
 
     // Fragmentで表示するViewを作成するメソッド
     override fun onCreateView(
@@ -66,14 +66,14 @@ class HomeFragment : Fragment(), OnMapReadyCallback{
             mMap.isMyLocationEnabled = true
         }
 
-        kenrokuenMarker = KenrokuenMarker(requireContext(), mMap)
-        kenrokuenMarker.addMarker()
-        MarkerData.kenrokuenMarker = kenrokuenMarker
+        googleMapMarker = GoogleMapMarker(requireContext(), mMap)
+        googleMapMarker.addMarker()
+        MarkerData.googleMapMarker = googleMapMarker
 
         val success = mMap.setMapStyle(
             activity?.let {
                 MapStyleOptions.loadRawResourceStyle(
-                    it, R.raw.style_json
+                    it, R.raw.style_json_test
                 )
             }
         )

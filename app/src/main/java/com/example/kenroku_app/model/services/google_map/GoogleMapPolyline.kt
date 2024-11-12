@@ -6,7 +6,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Polyline
 import com.google.android.gms.maps.model.PolylineOptions
 
-class KenrokuenPolyline(private val mMap:GoogleMap):GoogleMap.OnPolylineClickListener {
+class GoogleMapPolyline(private val mMap:GoogleMap):GoogleMap.OnPolylineClickListener {
     //ルート1
     private val polyline1 = mMap.addPolyline(
         PolylineOptions()

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="yamanakaza">山中座・菊の湯（おんな湯）</string>
+    <string name="souyu">総湯 菊の湯（おとこ湯）</string>
+    <string name="koorogibashi">こおろぎ橋</string>
+    <string name="ayatoribashi">あやとりはし</string>
+    <string name="kuroyahashi">黒屋橋</string>
+    <string name="yamanakaurushiza">山中うるし座</string>
+    <string name="katsurashimizu">桂清水</string>
+    <string name="bashodo">芭蕉堂</string>
+    <string name="hakusanjinja">白山神社</string>
+    <string name="kokubusan">国分山 医王寺</string>
+    <string name="kakusenkei">鶴仙渓 川床</string>
+    <string name="mitsumataosugi">三又大杉</string>
+    <string name="bashonoyakata">芭蕉の館</string>
+    <string name="tokushojinotsubakishimizu">徳正寺の椿清水</string>
+    <string name="kogeinoyakata">工芸の館（ろくろの里）</string>
+    <string name="hasebejinja">長谷部神社</string>
+    <string name="mugenan">無限庵</string>
+</resources>

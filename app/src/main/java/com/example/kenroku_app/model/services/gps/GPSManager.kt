@@ -37,13 +37,13 @@ class GPSManager(
                 visitCount.add()
                 onLocation(isLocation)
             }
-            for(i in MarkerData.markerPosition.indices) {
+            for(i in MarkerData.yamanakaMarkerPosition.indices) {
                 val targetLocation = Location("target")
-                targetLocation.latitude = MarkerData.markerPosition[i].latitude
-                targetLocation.longitude = MarkerData.markerPosition[i].longitude
+                targetLocation.latitude = MarkerData.yamanakaMarkerPosition[i].latitude
+                targetLocation.longitude = MarkerData.yamanakaMarkerPosition[i].longitude
                 val distance = location.distanceTo(targetLocation)
 
-                checkPointFlagCheck.checkCheckPointFlag(i,distance, MarkerData.kenrokuenMarker)
+                checkPointFlagCheck.checkCheckPointFlag(i,distance, MarkerData.googleMapMarker)
             }
         }
 

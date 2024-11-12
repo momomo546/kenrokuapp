@@ -16,9 +16,10 @@ import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.util.Vector
 
-class KenrokuenMarker(val context: Context,val mMap: GoogleMap) {
+class GoogleMapMarker(val context: Context, val mMap: GoogleMap) {
     private val assetManager = context.assets
-    private val inputStream = assetManager.open("markerList.json") //Jsonファイル
+    //private val inputStream = assetManager.open("markerList.json") //Jsonファイル
+    private val inputStream = assetManager.open("yamanakaMarkerList.json")
     private val bufferedReader = BufferedReader(InputStreamReader(inputStream))
     private val str: String = bufferedReader.readText() //データ
     var markerList: Vector<MarkerOptions> = Vector()
@@ -31,16 +32,18 @@ class KenrokuenMarker(val context: Context,val mMap: GoogleMap) {
 
         for (i in 0 until jsonArray.length()) {
             val jsonData = jsonArray.getJSONObject(i)
-            val tmp = LatLng(jsonData.getDouble("lat"),jsonData.getDouble("lng"))
+            val latLng = LatLng(jsonData.getDouble("lat"),jsonData.getDouble("lng"))
             val name = jsonData.getString("name")
-            val iconColor = jsonData.getString("icon")
-            val resourceText = context.resources.getIdentifier("$name", "string", context.packageName)
-            markerPosition.add(tmp)
+            //val iconColor = jsonData.getString("icon")
+            //val resourceText = context.resources.getIdentifier("$name", "string", context.packageName)
+            val resourceText = context.getString(R.string.yamanakaza)
+            markerPosition.add(latLng)
             markerList.add(
                 MarkerOptions()
                     .position(markerPosition[i])
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
-                    .title(context.getString(resourceText))
+                    //.title(context.getString(resourceText))
+                    .title(resourceText)
             )
         }
         MarkerData.markerList = markerList

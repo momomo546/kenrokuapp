@@ -3,8 +3,8 @@ package com.example.kenroku_app.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.kenroku_app.R
-import com.example.kenroku_app.model.services.google_map.KenrokuenMarker
-import com.example.kenroku_app.model.services.google_map.KenrokuenPolyline
+import com.example.kenroku_app.model.services.google_map.GoogleMapMarker
+import com.example.kenroku_app.model.services.google_map.GoogleMapPolyline
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
@@ -16,34 +16,46 @@ class HomeViewModel : ViewModel() {
 
     private lateinit var mMap: GoogleMap
     private val TAG: String = "HomeViewModel"
-    private lateinit var kenrokuenMarker: KenrokuenMarker
+    private lateinit var googleMapMarker: GoogleMapMarker
+    // 移動の制限範囲
+    val latLngBounds = LatLngBounds(
+        LatLng(36.5600, 136.6594),  // SW bounds
+        LatLng(36.5648, 136.6653) // NE bounds
+    )
+    val yamanakaLatLngBounds = LatLngBounds(
+        LatLng(36.227973, 136.358795),  // SW bounds
+        LatLng(36.253658, 136.377376) // NE bounds
+    )
+    val yamanaka = true
+    val MINZOOM = 16.5f
+    val MINZOOM2 = 15.5f
+    val MAXZOOM = 20.0f
 
     fun initializeMap(googleMap: GoogleMap) {
         mMap = googleMap
-        mMap.setMinZoomPreference(16.5f)
-        mMap.setMaxZoomPreference(20.0f)
+        mMap.setMinZoomPreference(MINZOOM2)
+        mMap.setMaxZoomPreference(MAXZOOM)
         Log.d(TAG, "onMapReady")
 
-        setMapBounds()
+        setMapBounds(yamanakaLatLngBounds)
         addOverlaysAndCamera()
         addKenrokuenMarker()
         mMap.uiSettings.isZoomControlsEnabled = true
 
-        val kenrokuenPolyline = KenrokuenPolyline(mMap)
-        kenrokuenPolyline.setPolyline()
+        val googleMapPolyline = GoogleMapPolyline(mMap)
+        googleMapPolyline.setPolyline()
     }
 
-    private fun setMapBounds() {
-        // 移動の制限範囲
-        val adelaideBounds = LatLngBounds(
-            LatLng(36.5600, 136.6594),  // SW bounds
-            LatLng(36.5648, 136.6653) // NE bounds
-        )
+    private fun setMapBounds(latLngBounds: LatLngBounds) {
         // 移動の制限の適用
-        mMap.setLatLngBoundsForCameraTarget(adelaideBounds)
+        mMap.setLatLngBoundsForCameraTarget(latLngBounds)
     }
 
     private fun addOverlaysAndCamera() {
+        if(yamanaka){
+            yamanakaConfig()
+            return
+        }
         //オーバーレイの地図を設定
         val kenrokuenLatLng = LatLng(36.5625, 136.66227)
         //地図
@@ -57,11 +69,19 @@ class HomeViewModel : ViewModel() {
         mMap.addGroundOverlay(kenrokuenMapWhite)
         mMap.addGroundOverlay(kenrokuenMap)
 
-        //カメラとズームの初期位置設定
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(kenrokuenLatLng))
-        mMap.moveCamera(CameraUpdateFactory.zoomTo(16.5f))
+        setInitialCameraPosition(kenrokuenLatLng)
     }
 
+    private fun yamanakaConfig() {
+        val yamanakaLatLng = LatLng(36.246801, 136.373319)
+        setInitialCameraPosition(yamanakaLatLng)
+    }
+
+    private fun setInitialCameraPosition(latLng: LatLng) {
+        //カメラとズームの初期位置設定
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(16.5f))
+    }
     private fun addKenrokuenMarker() {
 
     }

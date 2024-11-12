@@ -1,0 +1,106 @@
+{
+  "markerList": [
+    {
+      "name": "yamanakaza",
+      "icon": "HUE_RED",
+      "lat": 36.246981,
+      "lng": 136.372885
+    },
+    {
+      "name": "souyu",
+      "icon": "HUE_YELLOW",
+      "lat": 36.246835,
+      "lng": 136.373205
+    },
+    {
+      "name": "koorogibashi",
+      "icon": "HUE_GREEN",
+      "lat": 36.24100747241926,
+      "lng": 136.37160339553094
+    },
+    {
+      "name": "ayatoribashi",
+      "icon": "HUE_BLUE",
+      "lat": 36.24547368327724,
+      "lng": 136.37563996669536
+    },
+    {
+      "name": "kuroyahashi",
+      "icon": "HUE_ORANGE",
+      "lat": 36.250127637823404,
+      "lng": 136.37578738203896
+    },
+    {
+      "name": "yamanakaurushiza",
+      "icon": "HUE_PURPLE",
+      "lat": 36.256304333033746,
+      "lng": 136.37159700902436
+    },
+    {
+      "name": "katsurashimizu",
+      "icon": "HUE_CYAN",
+      "lat": 36.25414698709651,
+      "lng": 136.37263513138743
+    },
+    {
+      "name": "bashodo",
+      "icon": "HUE_MAGENTA",
+      "lat": 36.249919984803924,
+      "lng": 136.3761843489637
+    },
+    {
+      "name": "hakusanjinja",
+      "icon": "HUE_LIME",
+      "lat": 36.25161162089192,
+      "lng": 136.3723512679929
+    },
+    {
+      "name": "kokubusan_ioji",
+      "icon": "HUE_VIOLET",
+      "lat": 36.24970729332296,
+      "lng": 136.37173102990954
+    },
+    {
+      "name": "kakusenkei_kawadoko",
+      "icon": "HUE_AMBER",
+      "lat": 36.244937486434175,
+      "lng": 136.37583436669524
+    },
+    {
+      "name": "mitsumataosugi",
+      "icon": "HUE_BROWN",
+      "lat": 36.22958920754874,
+      "lng": 136.3666297685451
+    },
+    {
+      "name": "bashonoyakata",
+      "icon": "HUE_TEAL",
+      "lat": 36.246222930311845,
+      "lng": 136.37392991087435
+    },
+    {
+      "name": "tokushojinotsubakishimizu",
+      "icon": "HUE_INDIGO",
+      "lat": 36.2294677452656,
+      "lng": 136.3652514532019
+    },
+    {
+      "name": "kogeinoyakata_rokuronosato",
+      "icon": "HUE_ORCHID",
+      "lat": 36.23469422958989,
+      "lng": 136.365275526252
+    },
+    {
+      "name": "hasebejinja",
+      "icon": "HUE_DEEP_PINK",
+      "lat": 36.26615012980106,
+      "lng": 136.37994688886923
+    },
+    {
+      "name": "mugenan",
+      "icon": "HUE_LIGHT_BLUE",
+      "lat": 36.24103989989474,
+      "lng": 136.3721610096297
+    }
+  ]
+}
